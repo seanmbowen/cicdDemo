@@ -47,24 +47,24 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=seanmbowen_cicdDemo
       #Build the application using Maven
       - name: Upload JAR
-      #This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.
+        #This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.
         uses: actions/upload-artifact@v3
         with:
           #Set artifact name
           name: artifact
-         #From this path
+          #From this path
           path: target/cicdDemo-0.0.1-SNAPSHOT.jar
-            #Deploy the artifact (JAR) into AWS Beanstalk
-      - name: Generate deployment package
-        run: zip -r deploy.zip . -x '*.git*'
+          #Deploy the artifact (JAR) into AWS Beanstalk
+      #      - name: Generate deployment package
+      #        run: zip -r deploy.zip . -x '*.git*'
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v20
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           use_existing_version_if_available: true
-          application_name: spring-boot-deploy
-          environment_name: Springbootdeploy-env-1
+          application_name: spring-boot-demo
+          environment_name: Springbootdemo-env
           version_label: ${{github.SHA}}
           region: ca-central-1
-          deployment_package: deploy.zip
+          deployment_package: target/cicdDemo-0.0.1-SNAPSHOT.jar
