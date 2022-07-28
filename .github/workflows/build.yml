@@ -57,7 +57,7 @@ jobs:
             LICENSE.txt
             target/cicdDemo-0.0.1-SNAPSHOT.jar
       - name: Deploy to EB
-        if: github.event_name == 'push' && github.ref == "refs/heads/main"
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: einaregilsson/beanstalk-deploy@v20
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
