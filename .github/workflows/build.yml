@@ -69,11 +69,13 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Prepare Release
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: true
           prerelease: true
+          title: "Development Build"
           files: |
             LICENSE.txt
-            *.jar
+            target/cicdDemo-0.0.1-SNAPSHOT.jar
