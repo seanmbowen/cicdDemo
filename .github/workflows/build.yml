@@ -54,9 +54,6 @@ jobs:
           name: artifact
           #From this path
           path: target/cicdDemo-0.0.1-SNAPSHOT.jar
-          #Deploy the artifact (JAR) into AWS Beanstalk
-      #      - name: Generate deployment package
-      #        run: zip -r deploy.zip . -x '*.git*'
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v20
         with:
@@ -68,3 +65,13 @@ jobs:
           version_label: ${{github.SHA}}
           region: ca-central-1
           deployment_package: target/cicdDemo-0.0.1-SNAPSHOT.jar
+      - name: Upload Coverage Reports
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+#          files: ./coverage1.xml,./coverage2.xml # optional
+#          flags: unittests # optional
+#          name: codecov-umbrella # optional
+#          fail_ci_if_error: true # optional (default = false)
+#          verbose: true # optional (default = false)
+
