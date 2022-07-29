@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: DEV
 on:
   workflow_dispatch:
   push:
