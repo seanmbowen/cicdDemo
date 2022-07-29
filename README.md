@@ -1,4 +1,4 @@
-# ci-cd-demo
+# Spring CI/CD Demo Application [![Build Status](https://github.com/seanmbowen/cicdDemo/actions/workflows/build.yml/badge.svg)](https://github.com/seanmbowen/cicdDemo/actions/workflows/build.yml)
 
 **Spring Boot & GitHub Actions** CI CD Demo
 
